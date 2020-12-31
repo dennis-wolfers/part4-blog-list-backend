@@ -1,0 +1,19 @@
+{
+  "name": "part4-blog-list-backend",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dennis-wolfers/part4-blog-list-backend.git"
+  },
+  "author": "Dennis Wolfers",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dennis-wolfers/part4-blog-list-backend/issues"
+  },
+  "homepage": "https://github.com/dennis-wolfers/part4-blog-list-backend#readme"
+}
