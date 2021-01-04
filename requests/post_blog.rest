@@ -2,8 +2,8 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-  "title": "Once upon a blogpost",
-  "author": "Some Person",
-  "url": "https://someurl.com/",
+  "title": "Unicycle-blogpost",
+  "author": "Fourth Wall",
+  "url": "https://yetaotherurl.com/",
   "likes": 0
 }
