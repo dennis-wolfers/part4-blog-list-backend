@@ -2,8 +2,8 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-  "title": "Airplane-blogpost",
-  "author": "Proper Form",
-  "url": "https://properurl.com/",
-  "likes": 678
+  "title": "Gyroplane-blogpost",
+  "author": "Rotor Form",
+  "url": "https://rotorurl.com/",
+  "likes": 99
 }
