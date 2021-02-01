@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const supertest = require('supertest')
+const { request } = require('../app')
 const app = require('../app')
 const api = supertest(app)
 const Blog = require('../models/blog')
@@ -17,6 +18,13 @@ const initialBlogs = [
     likes: 7
   }
 ]
+
+const blogToAdd = {
+  title: 'Added Blog',
+  author: 'The Dude',
+  url: 'https://lebowski.com/',
+  likes: 0
+}
 
 beforeEach(async () => {
   await Blog.deleteMany({})
@@ -43,6 +51,22 @@ test('id is defined', async () => {
   const response = await api.get('/api/blogs')
 
   expect(response.body[0].id).toBeDefined()
+})
+
+test('blog is successfully added', async () => {
+  await api
+    .post('/api/blogs')
+    .send(blogToAdd)
+    .expect(201)
+    .expect('Content-Type', /application\/json/)
+
+  const response = await api.get('/api/blogs')
+
+  expect(response.body).toHaveLength(initialBlogs.length + 1)
+
+  const urls = response.body.map(r => r.url)
+
+  expect(urls).toContain('https://lebowski.com/')
 })
 
 afterAll(() => {
