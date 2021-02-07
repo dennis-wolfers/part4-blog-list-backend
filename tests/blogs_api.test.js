@@ -69,6 +69,24 @@ test('blog is successfully added', async () => {
   expect(urls).toContain('https://lebowski.com/')
 })
 
+test('new blog missing a likes entry defaults to zero', async () => {
+  const blogSansLikes = {
+    title: 'Somebody has to like me best',
+    author: 'Dianne Wiest',
+    url: 'https://birdcage.com/'
+  }
+
+  await api
+    .post('/api/blogs')
+    .send(blogSansLikes)
+    .expect(201)
+    .expect('Content-Type', /application\/json/)
+
+  const response = await api.get('/api/blogs')
+  const addedBlog = response.body.filter(r => r.title === 'Somebody has to like me best')
+  expect(addedBlog[0].likes).toBe(0)
+})
+
 afterAll(() => {
   mongoose.connection.close()
 })
