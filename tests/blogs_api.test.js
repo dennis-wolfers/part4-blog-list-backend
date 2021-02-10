@@ -89,15 +89,15 @@ test('new blog missing a likes entry defaults to zero', async () => {
 
 test('new blog without Title and URL returns 400', async () => {
   const blogWithoutTitleOrURL = {
-    title: '',
-    author: '',
-    url: ''
+    title: null,
+    author: 'anon',
+    url: null
   }
 
   await api
     .post('/api/blogs')
     .send(blogWithoutTitleOrURL)
-  //.expect(400)
+    .expect(400)
 })
 
 afterAll(() => {
