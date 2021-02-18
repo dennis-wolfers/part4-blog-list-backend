@@ -92,6 +92,19 @@ describe('when initialized with some test blog posts', () => {
     })
   })
 
+  describe('update of a blog', () => {
+    test('succeeds with a 200 return code', async () => {
+      const blogsAtStart = await helper.blogsInDB()
+      const blogToUpdate = blogsAtStart[0]
+      blogToUpdate.likes = blogToUpdate.likes + 1
+      
+      await api
+        .put(`/api/blogs/${blogToUpdate.id}`)
+        .send(blogToUpdate)
+        .expect(200)
+    })
+  })
+
   describe('deletion of a blog', () => {
     test('succeeds with a 204 return code', async () => {
       const blogsAtStart = await helper.blogsInDB()
