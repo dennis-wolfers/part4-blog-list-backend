@@ -1,12 +1,12 @@
 const mongoose = require('mongoose')
 const supertest = require('supertest')
-const { request } = require('../app')
+// const { request } = require('../app')
 const helper = require('./test_helper')
-const logger = require('../utils/logger')
+// const logger = require('../utils/logger')
 const app = require('../app')
 const api = supertest(app)
 const Blog = require('../models/blog')
-const blogsRouter = require('../controllers/blogs')
+// const blogsRouter = require('../controllers/blogs')
 
 const blogToAdd = {
   title: 'Added Blog',
@@ -97,7 +97,7 @@ describe('when initialized with some test blog posts', () => {
       const blogsAtStart = await helper.blogsInDB()
       const blogToUpdate = blogsAtStart[0]
       blogToUpdate.likes = blogToUpdate.likes + 1
-      
+
       await api
         .put(`/api/blogs/${blogToUpdate.id}`)
         .send(blogToUpdate)
@@ -115,7 +115,7 @@ describe('when initialized with some test blog posts', () => {
         .expect(204)
 
       const blogsAtEnd = await helper.blogsInDB()
-      
+
       expect(blogsAtEnd.length).toBe(blogsAtStart.length - 1)
 
       const urls = blogsAtEnd.map(r => r.url)

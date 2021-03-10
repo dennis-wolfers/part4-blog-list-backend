@@ -1,4 +1,6 @@
+const usersRouter = require('../controllers/users')
 const Blog = require('../models/blog')
+const User = require('../models/user')
 const logger = require('../utils/logger')
 
 const initialBlogs = [
@@ -22,6 +24,13 @@ const blogsInDB = async () => {
   return processedBlogs
 }
 
+const usersInDB = async () => {
+  const users = await User.find({})
+  return users.map(u => u.toJSON())
+}
+
 module.exports = {
-  initialBlogs, blogsInDB
+  initialBlogs,
+  blogsInDB,
+  usersInDB
 }
