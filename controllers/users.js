@@ -3,6 +3,15 @@ const { request, response } = require('express')
 const usersRouter = require('express').Router()
 const User = require('../models/user')
 
+usersRouter.get('/', async (request, response, next) => {
+  try {
+    const users = await User.find({})
+    response.json(users)
+  } catch (exception) {
+    next(exception)
+  }
+})
+
 usersRouter.post('/', async (request, response) => {
   const body = request.body
 
