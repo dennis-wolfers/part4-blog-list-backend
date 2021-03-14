@@ -13,6 +13,13 @@ usersRouter.get('/', async (request, response, next) => {
 
 usersRouter.post('/', async (request, response, next) => {
   const body = request.body
+
+  if (body.password.length < 8) {
+    response
+      .status(400)
+      .json({ error: 'Pleae enter a password with more than seven characters.' })
+  }
+
   const saltRounds = 10
   const passwordHash = await bcrypt.hash(body.password, saltRounds)
 

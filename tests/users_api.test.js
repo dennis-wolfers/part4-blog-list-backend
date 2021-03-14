@@ -11,7 +11,7 @@ describe('when there is initially one user in the db', () => {
     await User.deleteMany({})
 
     const passwordHash = await bcrypt.hash('sekret', 10)
-    const user = new User({ username: 'root', passwordHash })
+    const user = new User({ name: 'theName', username: 'root', passwordHash })
 
     await user.save()
   })
@@ -36,6 +36,27 @@ describe('when there is initially one user in the db', () => {
 
     const usernames = usersAtEnd.map(u => u.username)
     expect(usernames).toContain(newUser.username)
+  })
+
+  describe('when an invalid user is submitted', () => {
+    test('when the username is missing', async () => {
+      const usersAtStart = await helper.usersInDB()
+      const passwordHash = await bcrypt.hash('bubblegum', 10)
+
+      const missingUsername = {
+        username: '',
+        name: 'test user',
+        passwordHash
+      }
+
+      await api
+        .post('/api/users')
+        .send(missingUsername)
+        .expect(400)
+
+      const usersAtEnd = await helper.usersInDB()
+      expect(usersAtEnd).toHaveLength(usersAtStart.length)
+    })
   })
 })
 
