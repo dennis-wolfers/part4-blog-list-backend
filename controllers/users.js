@@ -14,8 +14,14 @@ usersRouter.get('/', async (request, response, next) => {
 usersRouter.post('/', async (request, response, next) => {
   const body = request.body
 
-  if (body.password.length < 8) {
-    response
+  if (!body.password) {
+    return response
+      .status(400)
+      .json({ error: 'Please enter a password.' })
+  }
+
+  if (body.password.length < 3) {
+    return response
       .status(400)
       .json({ error: 'Pleae enter a password with more than seven characters.' })
   }
