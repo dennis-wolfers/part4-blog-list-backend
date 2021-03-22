@@ -23,7 +23,7 @@ usersRouter.post('/', async (request, response, next) => {
   if (body.password.length < 3) {
     return response
       .status(400)
-      .json({ error: 'Pleae enter a password with more than seven characters.' })
+      .json({ error: 'Please enter a password with more than two characters.' })
   }
 
   const saltRounds = 10
