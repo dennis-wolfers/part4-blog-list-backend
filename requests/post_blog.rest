@@ -2,8 +2,8 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-  "title": "Glider-blogpost",
-  "author": "Stan D. Lenticular",
-  "url": "https://glideurl.com/",
-  "likes": 0
+  "title": "Helicopter-blogpost",
+  "author": "Rotor Disk",
+  "url": "https://verticalurl.com/",
+  "likes": 7
 }
