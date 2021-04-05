@@ -1,9 +1,10 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
+Authorization: bearer exJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IndvbmRlclllYXJzIiwiaWQiOiI2MDZhNTAwYjMxOGYzYTIxNzc1NGIwMmYiLCJpYXQiOjE2MTc1ODEyODB9.gpFnlK2AZAFWaSboDTVa2h4Nbe5899RsrSmz-LFxxdY
 
 {
-  "title": "Helicopter-blogpost",
-  "author": "Rotor Disk",
-  "url": "https://verticalurl.com/",
-  "likes": 7
+  "title": "Invalid-blogpost",
+  "author": "Rick Props",
+  "url": "https://brokenwingurl.com/",
+  "likes": 0
 }
