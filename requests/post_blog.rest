@@ -1,10 +1,10 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
-Authorization: bearer exJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IndvbmRlclllYXJzIiwiaWQiOiI2MDZhNTAwYjMxOGYzYTIxNzc1NGIwMmYiLCJpYXQiOjE2MTc1ODEyODB9.gpFnlK2AZAFWaSboDTVa2h4Nbe5899RsrSmz-LFxxdY
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IndvbmRlclllYXJzIiwiaWQiOiI2MDZhNTAwYjMxOGYzYTIxNzc1NGIwMmYiLCJpYXQiOjE2MTgwNjI1NzF9.s1Dt_2bk-famWAKy9k7OLWiAzDaC7lSGwpae0uQYyZU
 
 {
-  "title": "Invalid-blogpost",
-  "author": "Rick Props",
-  "url": "https://brokenwingurl.com/",
-  "likes": 0
+  "title": "Middleware test blogpost",
+  "author": "M Ware",
+  "url": "https://middleurl.com/",
+  "likes": 1
 }

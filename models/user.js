@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, 'Please enter your name.'],
-    minlength: [3, 'Name must be more than three characters.']
+    minlength: [3, 'Name must have more than three characters.']
   },
   blogs: [
     {
