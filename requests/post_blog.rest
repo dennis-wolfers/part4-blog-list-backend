@@ -1,10 +1,10 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IndvbmRlclllYXJzIiwiaWQiOiI2MDZhNTAwYjMxOGYzYTIxNzc1NGIwMmYiLCJpYXQiOjE2MTgwNjI1NzF9.s1Dt_2bk-famWAKy9k7OLWiAzDaC7lSGwpae0uQYyZU
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IndvbmRlclllYXJzIiwiaWQiOiI2MDZhNTAwYjMxOGYzYTIxNzc1NGIwMmYiLCJpYXQiOjE2MTgwNjM0MjZ9.WzoUHcdUsmTGjYZWg9DC8aQulINRyntLdQV1pIzi_BE
 
 {
-  "title": "Middleware test blogpost",
-  "author": "M Ware",
-  "url": "https://middleurl.com/",
-  "likes": 1
+  "title": "Middleware test2 blogpost",
+  "author": "M Ware2",
+  "url": "https://middle2url.com/",
+  "likes": 2
 }
