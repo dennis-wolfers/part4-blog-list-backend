@@ -6,21 +6,27 @@ const helper = require('./test_helper')
 const app = require('../app')
 const api = supertest(app)
 const Blog = require('../models/blog')
+const User = require('../models/user')
+const bcrypt = require('bcrypt')
 // const blogsRouter = require('../controllers/blogs')
-
-const blogToAdd = {
-  title: 'Added Blog',
-  author: 'The Dude',
-  url: 'https://lebowski.com/',
-  likes: 0
-}
 
 describe('when initialized with some test blog posts', () => {
   beforeEach(async () => {
+    await User.deleteMany({})
+
+    const passwordHash = await bcrypt.hash('sekret', 10)
+    const user = new User({ name: 'theName', username: 'root', passwordHash })
+
+    const savedUser = await user.save()
+
+    const response = await api.post('/api/login').send({ username: savedUser.username, password: 'sekret' })
+
     await Blog.deleteMany({})
     let blogObject = new Blog(helper.initialBlogs[0])
+    blogObject.user = savedUser._id
     await blogObject.save()
     blogObject = new Blog(helper.initialBlogs[1])
+    blogObject.user = savedUser._id
     await blogObject.save()
   })
 
@@ -47,7 +53,7 @@ describe('when initialized with some test blog posts', () => {
     test('blog is successfully added', async () => {
       await api
         .post('/api/blogs')
-        .send(blogToAdd)
+        .send(helper.blogToAdd)
         .expect(201)
         .expect('Content-Type', /application\/json/)
 

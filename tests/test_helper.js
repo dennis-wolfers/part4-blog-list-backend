@@ -1,7 +1,7 @@
-const usersRouter = require('../controllers/users')
+// const usersRouter = require('../controllers/users')
 const Blog = require('../models/blog')
 const User = require('../models/user')
-const logger = require('../utils/logger')
+// const logger = require('../utils/logger')
 
 const initialBlogs = [
   {
@@ -18,6 +18,13 @@ const initialBlogs = [
   }
 ]
 
+const blogToAdd = {
+  title: 'Added Blog',
+  author: 'The Dude',
+  url: 'https://lebowski.com/',
+  likes: 0
+}
+
 const blogsInDB = async () => {
   const blogs = await Blog.find({})
   const processedBlogs = blogs.map(blog => blog.toJSON())
@@ -31,6 +38,7 @@ const usersInDB = async () => {
 
 module.exports = {
   initialBlogs,
+  blogToAdd,
   blogsInDB,
   usersInDB
 }

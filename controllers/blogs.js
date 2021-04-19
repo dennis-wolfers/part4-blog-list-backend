@@ -12,7 +12,6 @@ blogsRouter.get('/', async (request, response, next) => {
 
 blogsRouter.post('/', async (request, response, next) => {
   const blog = new Blog(request.body)
-
   const user = request.user
   blog.user = user._id
 
