@@ -2,6 +2,7 @@ const { request, response, next } = require('express')
 const logger = require('./logger')
 const User = require('../models/user')
 const jwt = require('jsonwebtoken')
+const process = require('process')
 
 const requestLogger = (request, response, next) => {
   logger.info('Method:', request.method)
@@ -38,7 +39,6 @@ const tokenExtractor = (request, response, next) => {
 }
 
 const userExtractor = async (request, response, next) => {
-  console.log(request)
   var decodedToken = jwt.verify(request.token, process.env.SECRET)
 
   if (!request.token || !decodedToken.id) {
