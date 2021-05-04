@@ -17,28 +17,44 @@ describe('when initialized with some test blog posts', () => {
     const passwordHash = await bcrypt.hash('sekret', 10)
     const user = new User({ name: 'theName', username: 'root', passwordHash })
 
-    const savedUser = await user.save()
-
-    const response = await api.post('/api/login').send({ username: savedUser.username, password: 'sekret' })
+    var savedUser = await user.save()
+    await api.post('/api/login').send({ username: 'rooot', password: 'sekret' })
 
     await Blog.deleteMany({})
+
     let blogObject = new Blog(helper.initialBlogs[0])
     blogObject.user = savedUser._id
     await blogObject.save()
+
     blogObject = new Blog(helper.initialBlogs[1])
     blogObject.user = savedUser._id
     await blogObject.save()
   })
 
   test('blogs are returned as JSON', async () => {
+    const response = await api
+      .post('/api/login')
+      .send({ username: 'root', password: 'sekret' })
+    const token = response.body.token
+
     await api
       .get('/api/blogs')
+      .set('Authorization', 'bearer ' + token)
       .expect(200)
       .expect('Content-Type', /application\/json/)
   })
 
   test('there are two blogs', async () => {
-    const response = await api.get('/api/blogs')
+    const loggedIn = await api
+      .post('/api/login')
+      .send({ username: 'root', password: 'sekret' })
+    const token = loggedIn.body.token
+
+    const response = await api
+      .get('/api/blogs')
+      .set('Authorization', 'bearer ' + token)
+
+    console.log(`response: ${response.body}`)
 
     expect(response.body).toHaveLength(helper.initialBlogs.length)
   })

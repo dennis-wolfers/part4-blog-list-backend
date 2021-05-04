@@ -3,12 +3,8 @@ const User = require('../models/user')
 const bcrypt = require('bcrypt')
 
 usersRouter.get('/', async (request, response, next) => {
-  try {
-    const users = await User.find({}).populate('blogs', { title: 1, author: 1, url: 1 })
-    response.json(users)
-  } catch (exception) {
-    next(exception)
-  }
+  const users = await User.find({}).populate('blogs', { title: 1, author: 1, url: 1 })
+  response.json(users)
 })
 
 usersRouter.post('/', async (request, response, next) => {
@@ -35,14 +31,10 @@ usersRouter.post('/', async (request, response, next) => {
     passwordHash
   })
 
-  try {
-    const savedUser = await user.save()
-    response
-      .status(201)
-      .json(savedUser)
-  } catch (exception) {
-    next(exception)
-  }
+  const savedUser = await user.save()
+  response
+    .status(201)
+    .json(savedUser)
 })
 
 module.exports = usersRouter
