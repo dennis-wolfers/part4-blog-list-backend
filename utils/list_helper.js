@@ -22,8 +22,27 @@ const favoriteBlog = (blogs) => {
   return mostLikedBlog
 }
 
+const mostBlogs = (blogs) => {
+  const authorWithTheMostBlogs = { blogs: 0 }
+  const numberOfBlogsPerAuthor = {}
+
+  blogs.map((blog) => {
+    numberOfBlogsPerAuthor[blog.author] ? numberOfBlogsPerAuthor[blog.author]++ : numberOfBlogsPerAuthor[blog.author] = 1
+  })
+
+  for (const property in numberOfBlogsPerAuthor) {
+    if (numberOfBlogsPerAuthor[property] > authorWithTheMostBlogs.blogs) {
+      authorWithTheMostBlogs.author = property
+      authorWithTheMostBlogs.blogs = numberOfBlogsPerAuthor[property]
+    }
+  }
+
+  return authorWithTheMostBlogs
+}
+
 module.exports = {
   dummy,
   totalLikes,
-  favoriteBlog
+  favoriteBlog,
+  mostBlogs
 }
